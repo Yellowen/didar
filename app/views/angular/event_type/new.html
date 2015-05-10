@@ -1,0 +1,44 @@
+
+
+
+<form novalidate name="form">
+ <div class="newform">
+   
+
+  <fieldset class="form">
+    <legend ng-if="!editing"><span translate>Event types</span></legend>
+    <legend ng-if="editing"><span translate>Edit Event types</span></legend>
+
+    
+    <div class="row">
+      <div class="small-4 columns ">
+        <label><span translate>Name</span> :</label>
+        <string-field model="name" field-name="'name'" css-class="'rounded string_field'" ></string-field>
+      </div>
+    
+    
+      <div class="small-4 columns float-left small-offset-2">
+        <label><span translate>Description</span> :</label>
+        <text-field model="description" field-name="'description'" css-class="'rounded text_field'" ></text-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-4 columns ">
+        <label><span translate>Color</span> :</label>
+        <string-field model="color" field-name="'color'" css-class="'rounded string_field'" ></string-field>
+      </div>
+    
+  </fieldset>
+   
+</form>
+
+
+
+  <div class="row">
+      <div class="small-6 columns">
+        <button class="btn small green" ng-click="save(false)" ng-disabled="form.$invalid || !form.$dirty"><i class="fa fa-check"></i> <span translate>Save</span></button>
+        <button class="btn small blue" ng-click="save(true)" ng-disabled="form.$invalid || !form.$dirty"><i class="fa fa-check"></i> <span translate>Save & Add Another</span></button>
+        <button class="btn small red" ng-click="cancel()"><i class="fa fa-times"></i> <span translate>Cancel</span></button>
+      </div>
+  </div>
+</div>

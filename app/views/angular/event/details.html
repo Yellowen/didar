@@ -1,0 +1,39 @@
+<div class="details">
+  
+  
+      <p>
+        <b translate>Name :</b> {{object.name}}
+      </p>
+    
+      <p>
+        <b translate>Description :</b> {{object.description}}
+      </p>
+    
+      <p>
+        <b translate>Start :</b> {{object.start}}
+      </p>
+    
+      <p>
+        <b translate>End :</b> {{object.end}}
+      </p>
+    
+      <p>
+         <b translate>Event_type :</b> {{object.event_type.name}}
+        </p>
+    
+      <p>
+        <b translate>Url :</b> {{object.url}}
+      </p>
+    
+      <p>
+        <b translate>All_day :</b> {{object.all_day}}
+      </p>
+    
+
+    
+  <ul class="button-group float-right">
+    <a ng-href="#/events/{{ object.id }}/edit" class="small">
+      <span class="fa fa-edit"></span> <span translated>Edit</span>
+    </a>
+  </ul>
+</div>

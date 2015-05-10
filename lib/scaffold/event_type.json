@@ -1,0 +1,17 @@
+{
+    "name": "event_type",
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "type": "text"
+        },
+        {
+            "name": "color",
+            "type": "string"
+        }
+    ]
+}

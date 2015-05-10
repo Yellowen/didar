@@ -1,0 +1,34 @@
+{
+    "name": "event",
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "type": "text"
+        },
+        {
+            "name": "start",
+            "type": "datetime"
+        },
+        {
+            "name": "end",
+            "type": "datetime"
+        },
+        {
+            "name": "event_type",
+            "type": "belongs_to",
+            "to": "event_types"
+        },
+        {
+            "name": "url",
+            "type": "string"
+        },
+        {
+            "name": "all_day",
+            "type": "boolean"
+        }
+    ]
+}
