@@ -24,7 +24,7 @@ Events.config(["$routeProvider", function($routeProvider){
 // This controller is responsible for list page (index)
 Events.controller("EventController", ["$scope", "gettext", "Restangular", "catch_error", "$location", "$routeParams", function($scope, gettext, API, catch_error, $location, $routeParams){
 
-    
+
     $scope.filter_config = {
         list: API.all("events")
     };
@@ -160,7 +160,7 @@ Events.controller("EventController", ["$scope", "gettext", "Restangular", "catch
         $scope.view_progressbar = false;
         $scope.bulk_edit = false;
     };
-    
+
     /*
      * On delete event handler - `items` is an array of objects to delete
      */
@@ -184,7 +184,7 @@ Events.controller("EventController", ["$scope", "gettext", "Restangular", "catch
 
     };
     /*
-    
+
     API.all("events").getList()
         .then(function(data){
             $scope.events = data;
@@ -197,20 +197,20 @@ Events.controller("EventController", ["$scope", "gettext", "Restangular", "catch
 
 Events.controller("AddEventController", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
 
-    
+
 
     $scope.select2options = {};
     $scope.editing = false;
     $scope.obj_id = null;
     var is_copy = false;
 
-    
+
     $scope.event_type_data = {
         type: 'belongs_to',
         to: 'event_types',
         name: 'event_type'
     };
-    
+
     if( "id" in $routeParams ){
         $scope.obj_id = $routeParams.id;
         $scope.editing = true;
@@ -221,7 +221,7 @@ Events.controller("AddEventController", ["Restangular", "$scope", "$location", "
 
         var obj = API.one("events", $scope.obj_id).get()
                 .then(function(data) {
-                
+
                     $scope.name = data.name;
                     $scope.description = data.description;
                     $scope.start = to_datetime(data.start);
@@ -300,3 +300,9 @@ Events.controller("AddEventController", ["Restangular", "$scope", "$location", "
 
 
 
+Event.controller('EventMenuController', ["gettext", function(gettext){
+    this.menu_items = [
+        {title: gettext("Events"), url: "events", permission: {action: 'read',model: 'Event'}},
+        {title: gettext("Event Types"), url: "event_types", permission: {action: 'read',model: 'EventType'}},
+    ];
+}]);
