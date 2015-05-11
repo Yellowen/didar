@@ -1,7 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: 
+  name: MyString
+  description: MyText
+  start: 2015-05-11 11:25:50
+  end: 2015-05-11 11:25:50
+  event_type_id: 1
+  url: MyString
+  all_day: false
 
 two:
-  name: 
+  name: MyString
+  description: MyText
+  start: 2015-05-11 11:25:50
+  end: 2015-05-11 11:25:50
+  event_type_id: 1
+  url: MyString
+  all_day: false

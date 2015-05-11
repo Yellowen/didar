@@ -18,6 +18,7 @@ group :development do
 
   gem 'faalis', :path => File.expand_path('../../Faalis/', __FILE__)
   gem 'pry'
+
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'capybara'
   gem 'factory_girl_rails', '~> 4.0', require: false
@@ -26,4 +27,5 @@ group :development do
   gem 'cucumber-rails', require: false
   gem 'json_spec', git: 'git://github.com/Yellowen/json_spec.git'
   gem 'capybara-webkit'
+
 end

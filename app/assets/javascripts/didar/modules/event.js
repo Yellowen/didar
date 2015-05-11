@@ -300,7 +300,7 @@ Events.controller("AddEventController", ["Restangular", "$scope", "$location", "
 
 
 
-Event.controller('EventMenuController', ["gettext", function(gettext){
+Events.controller('EventMenuController', ["gettext", function(gettext){
     this.menu_items = [
         {title: gettext("Events"), url: "events", permission: {action: 'read',model: 'Event'}},
         {title: gettext("Event Types"), url: "event_types", permission: {action: 'read',model: 'EventType'}},
