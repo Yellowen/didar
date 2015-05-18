@@ -12,12 +12,12 @@ Feature: EventTypes API
     Then I should get "401" status code
     When format is json and I send patch to "/api/v1/event_types/1" with:
     """
-    {"name":"RUgVmbmuBVZHZmtzeqtRFTerFSMINHIXaNYxitIsxlddTKrYPA","description":"ZPPZaaaDIYCYnCzvUyrEdVLRDcYagupEYwMoyjpGudGQUjODXq","color":"HRCAIVMACeVAveglgYUdpZoMErBAEMVjpCkyfpBpmFEPYopLUz"}
+    {"name":"qUOlSKxJGILAlGOaesKLrDXTnemMkoAIxgWCTQtcOfUbhEoDzq","description":"WHDwclMOlpbgKGvYtQElKBtEXtKrRVbJoCmvOgUPfhdcXGcSPo","color":"xwLiRzsncdukWCMnVZREXUZCZPjuWVZJsYKgnJXBuTfNkAQLRu"}
     """
     Then I should get "401" status code
     When format is json and I send post to "/api/v1/event_types" with:
     """
-    {"name":"UyhUGEbTGwhQPdlZNwQRFWjhtWnBHkHEDhVXRqZabvyqKFhbof","description":"ZoSuZGuvPUMGlXBUvVaYRCQQWqQbQpzwGyQtpTOZqhOlNetTEo","color":"mgMNpcgqQjBvZdxPAEmHQRuEUsGIjdDDkAwHrikqTCLwqUXipZ"}
+    {"name":"tsbpHtVmpszahDGQcYqbUnuReeZvIqLlqTPwKtNkEgljcYZNba","description":"dajzqMWLRwMRUiNPWMYjEEBNUuDVojPmyxYLcGLqZBMZcNwUFf","color":"fnUsukQpBSIanHukVYGutooFACPWTKvrPiYTmPlucfHNLpEODT"}
     """
     Then I should get "401" status code
     When format is json and I send delete to "/api/v1/event_types/1"

@@ -1,19 +1,22 @@
 // Events Module
-var Events = angular.module("Event", ["ListView", "Filter", "Anim", "Fields",]);
+var Events = angular.module("Event", ["ListView", "Filter", "Anim", "Fields", "EventType"]);
 
 // Events configuration section ---------------------------
-Events.config(["$routeProvider", function($routeProvider){
+Events.config(["$stateProvider", function($stateProvider){
     // Add any route you need here
-    $routeProvider.
-        when("/events", {
-            templateUrl: template("event/index"),
+    $stateProvider.
+        state("events", {
+            url: "/events",
+            templateUrl: template_url("event/index"),
             controller: "EventController"
         }).
-        when("/events/new",{
+        state("events-new",{
+            url: "/events/new",
             templateUrl: template("event/new"),
             controller: "AddEventController"
         }).
-        when("/events/:id/edit",{
+        state("events-edit",{
+            url: "/events/edit/:id",
             templateUrl: template("event/new"),
             controller: "AddEventController"
         });
@@ -302,7 +305,7 @@ Events.controller("AddEventController", ["Restangular", "$scope", "$location", "
 
 Events.controller('EventMenuController', ["gettext", function(gettext){
     this.menu_items = [
-        {title: gettext("Events"), url: "events", permission: {action: 'read',model: 'Event'}},
-        {title: gettext("Event Types"), url: "event_types", permission: {action: 'read',model: 'EventType'}},
+        {title: gettext("Events"), url: "events", permission: {action: "read", model: "Event"}},
+        {title: gettext("Event Types"), url: "event_types", permission: {action: "read", model: "EventType"}},
     ];
 }]);

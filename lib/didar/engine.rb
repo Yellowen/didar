@@ -8,8 +8,14 @@ require "faalis"
 
 module Didar
   class Engine < ::Rails::Engine
-
+    isolate_namespace Faalis
     engine_name 'didar'
+
+    # Map `api` to `API` in Rails autoload
+    ActiveSupport::Inflector.inflections(:en) do |inflect|
+      inflect.acronym 'API'
+    end
+
     ::Faalis::Engine.setup do |config|
       config.models_with_permission = []
     end

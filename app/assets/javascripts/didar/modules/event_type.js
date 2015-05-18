@@ -1,20 +1,23 @@
 // EventTypes Module
-var EventTypes = angular.module("EventType", ["ListView", "Filter", "Anim", "Fields",]);
+var EventTypes = angular.module("EventType", ["ListView", "Filter", "Anim", "Fields"]);
 
 // EventTypes configuration section ---------------------------
-EventTypes.config(["$routeProvider", function($routeProvider){
+EventTypes.config(["$stateProvider", function($stateProvider){
     // Add any route you need here
-    $routeProvider.
-        when("/event_types", {
-            templateUrl: template("event_type/index"),
+    $stateProvider.
+        state("event_types", {
+            url: "/event_types",
+            templateUrl: template_url("event_type/index"),
             controller: "EventTypeController"
         }).
-        when("/event_types/new",{
-            templateUrl: template("event_type/new"),
+        state("event_types/new",{
+            url: "/event_types/new",
+            templateUrl: template_url("event_type/new"),
             controller: "AddEventTypeController"
         }).
-        when("/event_types/:id/edit",{
-            templateUrl: template("event_type/new"),
+        state("event_types-edit",{
+            url: "/event_types/:id/edit",
+            templateUrl: template_url("event_type/new"),
             controller: "AddEventTypeController"
         });
 }]);
@@ -24,7 +27,7 @@ EventTypes.config(["$routeProvider", function($routeProvider){
 // This controller is responsible for list page (index)
 EventTypes.controller("EventTypeController", ["$scope", "gettext", "Restangular", "catch_error", "$location", "$routeParams", function($scope, gettext, API, catch_error, $location, $routeParams){
 
-    
+
     $scope.filter_config = {
         list: API.all("event_types")
     };
@@ -160,7 +163,7 @@ EventTypes.controller("EventTypeController", ["$scope", "gettext", "Restangular"
         $scope.view_progressbar = false;
         $scope.bulk_edit = false;
     };
-    
+
     /*
      * On delete event handler - `items` is an array of objects to delete
      */
@@ -184,7 +187,7 @@ EventTypes.controller("EventTypeController", ["$scope", "gettext", "Restangular"
 
     };
     /*
-    
+
     API.all("event_types").getList()
         .then(function(data){
             $scope.event_types = data;
@@ -197,15 +200,15 @@ EventTypes.controller("EventTypeController", ["$scope", "gettext", "Restangular"
 
 EventTypes.controller("AddEventTypeController", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
 
-    
+
 
     $scope.select2options = {};
     $scope.editing = false;
     $scope.obj_id = null;
     var is_copy = false;
 
-    
-    
+
+
     if( "id" in $routeParams ){
         $scope.obj_id = $routeParams.id;
         $scope.editing = true;
@@ -216,7 +219,7 @@ EventTypes.controller("AddEventTypeController", ["Restangular", "$scope", "$loca
 
         var obj = API.one("event_types", $scope.obj_id).get()
                 .then(function(data) {
-                
+
                     $scope.name = data.name;
                     $scope.description = data.description;
                     $scope.color = data.color;
@@ -283,7 +286,3 @@ EventTypes.controller("AddEventTypeController", ["Restangular", "$scope", "$loca
 
     };
 }]);
-
-
-
-

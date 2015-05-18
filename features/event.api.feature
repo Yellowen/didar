@@ -12,12 +12,12 @@ Feature: Events API
     Then I should get "401" status code
     When format is json and I send patch to "/api/v1/events/1" with:
     """
-    {"name":"WMTBNKThJNNCgCApWUujXcmxOYdihlvyagrRCKMvbceiDyFLWE","description":"lIDmyGUuQIMCyqcorhRmZBQNGuGsYASRRkkxaysvulPRcTWMXE","start":"qGALbFpuQoUfVwEJLdznDMmWLUQfFtLqabeXfljwsAtPtsjRFT","end":"lNtqkuTLzNbsxcDMvzGAsKzRywPgesjZbwoFhLRCUYjTNWVvHr","event_type_id":1,"url":"NunADhNkLFsupzjzVzTkkpqkBuxtCjpcIxVUrgcoEYxbKXylIj","all_day":"vTRivbsJZLvnyjVdJAYikDHjwTYHmSWKHgnLraPytyqfiPkZZf"}
+    {"name":"oUVXAMoyBwDhNfIiPkSVEEUUMEgYCFuQhdZRjCDkISUXzshnyc","description":"EvcxFBBrxbbzQhhuyCeZffSZqvCwdpGEfflbUlGhYnfcwmXPTf","start":"zKrYzHdOCmrLbFcQWmMvfPnHVmuWvLALeFYdHIcwkLckXvJlJd","end":"cJqIVGawKOCnlVKWLwnSlommkaQRRKfqPMBGQUJinsStDbdeKC","event_type_id":1,"url":"bbxxaXTsnFIndMiRiKRSwLovaoogcxpIqtqVJtLkiNhKsPNvyo","all_day":"IlLVTBuiLumDGnlcApVOAPeapjEgHGFwWVRGLYgpgFjFwTVqyI"}
     """
     Then I should get "401" status code
     When format is json and I send post to "/api/v1/events" with:
     """
-    {"name":"ZjmiVlsDfURfmjvrPQXMeFSVKhBkswKZqsrXEWnDYIkTpKGRdg","description":"HpJjwmLAIcwpCysZXYRydMAeuNNRQrrjTndARJKWPsZIfDAEKr","start":"OcsuptCZGSWkYLODCIkJCltJpGfqyETaIEpMmDXrhwewxPxEzQ","end":"tFuRSIzWBtZIpkdStsTnngNUKPCjpsHKCIpdSsoGLkVDgGCkFd","event_type_id":1,"url":"cfCUBeyNeeIIhWSHwidvBstREGQtUoBeOymnldwxFslymjxtxM","all_day":"CupFbALerUQuFqaUYLKGKRfNifJYHmtlRWZlubZRrUaxJEXihM"}
+    {"name":"EUBSFSBqGMHXzwGaeJLUFkcEBUKfrcUSbIpfBxdhGbBftOXUYR","description":"KahgOSHwsaginJZkXXZXCPYPdRzrhqIewmxSuaEkmpgHWuwDsz","start":"ierYLgxZUaAfLheYUJCVWjKrsgKhazUBwztRveXTxVKxzcVUEH","end":"OpPfSRDRNxYwMjtfXCMKBQXOVbUQLMuwCjCbbqbRfcWCfNUUFo","event_type_id":1,"url":"phaJdjPORSlKeEUpWZZPwRsKLYmUzgIjUeofqSvmwaLUDlNEzJ","all_day":"SzDeaEindqWNFFiWQjtdsjEGBMPMcStGeGZfajIGQUazVxThHc"}
     """
     Then I should get "401" status code
     When format is json and I send delete to "/api/v1/events/1"
