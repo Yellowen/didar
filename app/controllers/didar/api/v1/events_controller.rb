@@ -1,4 +1,4 @@
-module didar
+module Didar
   class API::V1::EventsController < APIController
     after_action :verify_authorized, :except => :index
 

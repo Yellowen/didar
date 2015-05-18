@@ -8,7 +8,7 @@ require "faalis"
 
 module Didar
   class Engine < ::Rails::Engine
-    isolate_namespace Faalis
+    isolate_namespace Didar
     engine_name 'didar'
 
     # Map `api` to `API` in Rails autoload
