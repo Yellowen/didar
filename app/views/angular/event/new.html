@@ -11,31 +11,31 @@
 
     
     <div class="row">
-      <div class="small-4 columns ">
+      <div class="col-sm-4 form-group ">
         <label><span translate>Name</span> :</label>
-        <string-field model="name" field-name="'name'" css-class="'rounded string_field'" ></string-field>
+        <string-field model="name" field-name="'name'" css-class="'form-controll rounded string_field'" ></string-field>
       </div>
     
     
-      <div class="small-4 columns float-left small-offset-2">
+      <div class="col-sm-4 form-group pull-left col-sm-offset-2">
         <label><span translate>Description</span> :</label>
-        <text-field model="description" field-name="'description'" css-class="'rounded text_field'" ></text-field>
+        <text-field model="description" field-name="'description'" css-class="'form-controll rounded text_field'" ></text-field>
       </div>
     </div>
     <div class="row">
-      <div class="small-4 columns ">
+      <div class="col-sm-4 form-group ">
         <label><span translate>Start</span> :</label>
-        <datetime-field model="start" field-name="'start'" css-class="'rounded datetime_field'" ></datetime-field>
+        <datetime-field model="start" field-name="'start'" css-class="'form-controll rounded datetime_field'" ></datetime-field>
       </div>
     
     
-      <div class="small-4 columns float-left small-offset-2">
+      <div class="col-sm-4 form-group pull-left col-sm-offset-2">
         <label><span translate>End</span> :</label>
-        <datetime-field model="end" field-name="'end'" css-class="'rounded datetime_field'" ></datetime-field>
+        <datetime-field model="end" field-name="'end'" css-class="'form-controll rounded datetime_field'" ></datetime-field>
       </div>
     </div>
     <div class="row">
-      <div class="small-4 columns ">
+      <div class="col-sm-4 form-group ">
         <label><span translate>Event type</span> :</label>
         <relation-field select2-options="select2options"  title-field="'name'" model="event_type" field-data="event_type_data">
         </relation-field>
@@ -43,15 +43,15 @@
       </div>
     
     
-      <div class="small-4 columns float-left small-offset-2">
+      <div class="col-sm-4 form-group pull-left col-sm-offset-2">
         <label><span translate>Url</span> :</label>
-        <string-field model="url" field-name="'url'" css-class="'rounded string_field'" ></string-field>
+        <string-field model="url" field-name="'url'" css-class="'form-controll rounded string_field'" ></string-field>
       </div>
     </div>
     <div class="row">
-      <div class="small-4 columns ">
+      <div class="col-sm-4 form-group ">
         <label><span translate>All day</span> :</label>
-        <boolean-field model="all_day" field-name="'all_day'" css-class="'rounded boolean_field'" ></boolean-field>
+        <boolean-field model="all_day" field-name="'all_day'" css-class="'form-controll rounded boolean_field'" ></boolean-field>
       </div>
     
   </fieldset>
@@ -61,10 +61,10 @@
 
 
   <div class="row">
-      <div class="small-6 columns">
-        <button class="btn small green" ng-click="save(false)" ng-disabled="form.$invalid || !form.$dirty"><i class="fa fa-check"></i> <span translate>Save</span></button>
-        <button class="btn small blue" ng-click="save(true)" ng-disabled="form.$invalid || !form.$dirty"><i class="fa fa-check"></i> <span translate>Save & Add Another</span></button>
-        <button class="btn small red" ng-click="cancel()"><i class="fa fa-times"></i> <span translate>Cancel</span></button>
+      <div class="col-sm-6 form-group">
+        <button class="btn btn-success" ng-click="save(false)" ng-disabled="form.$invalid || !form.$dirty"><i class="fa fa-check"></i> <span translate>Save</span></button>
+        <button class="btn btn-warning" ng-click="save(true)" ng-disabled="form.$invalid || !form.$dirty"><i class="fa fa-check"></i> <span translate>Save & Add Another</span></button>
+        <button class="btn btn-danger" ng-click="cancel()"><i class="fa fa-times"></i> <span translate>Cancel</span></button>
       </div>
   </div>
 </div>

@@ -1,18 +1,18 @@
-module didar
+module Didar
   class API::V1::EventTypesController < APIController
 
     after_action :verify_authorized, :except => :index
 
     # GET /api/v1/event_types
     def index
-      @event_types = EventType.all
+      @event_types = Didar::EventType.all
       authorize @event_types
       respond_with(@event_types)
     end
 
     def create
-      authorize EventType, :create?
-      @event_type = EventType.new(resource_params)
+      authorize Didar::EventType, :create?
+      @event_type = Didar::EventType.new(resource_params)
 
       if @event_type.save
         respond_with(@event_type)
@@ -24,13 +24,13 @@ module didar
     end
 
     def show
-      @event_type = EventType.find(params[:id])
+      @event_type = Didar::EventType.find(params[:id])
       authorize @event_type
       respond_with(@event_type)
     end
 
     def update
-      @event_type = EventType.find(params[:id])
+      @event_type = Didar::EventType.find(params[:id])
       authorize @event_type, :update?
 
 
@@ -45,7 +45,7 @@ module didar
 
     def destroy
       ids = params[:id].split(",")
-      @event_types = EventType.where(:id => ids)
+      @event_types = Didar::EventType.where(:id => ids)
 
       authorize @event_types
       @event_types.destroy_all

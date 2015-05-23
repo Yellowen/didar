@@ -1,4 +1,4 @@
-class CreateEvents < ActiveRecord::Migration
+class CreateDidarEvents < ActiveRecord::Migration
   def change
     create_table :didar_events do |t|
       t.string :name

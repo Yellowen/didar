@@ -15,6 +15,11 @@ Events.config(["$stateProvider", function($stateProvider){
             templateUrl: template("event/new"),
             controller: "AddEventController"
         }).
+        state("events-calendar",{
+            url: "/events/calendar",
+            templateUrl: template("event/calendar"),
+            controller: "EventController"
+        }).
         state("events-edit",{
             url: "/events/edit/:id",
             templateUrl: template("event/new"),
@@ -63,48 +68,14 @@ Events.controller("EventController", ["$scope", "gettext", "Restangular", "catch
         {
             title: gettext("New"),
             icon: "fa fa-plus",
-            classes: "btn tiny green",
+            classes: "btn btn-success",
             permission: {
               name: "create",
-              model: "Event"
+              model: "Didar::Event"
             },
             route: "#/events/new"
 
-         },
-        {
-            title: gettext("Bulk Edit"),
-            icon: "fa fa-edit",
-            classes: "btn tiny yellow",
-            permission: {
-              name: "update",
-              model: "Event"
-            },
-            action: function(){
-                $scope.$apply("bulk_edit = ! bulk_edit");
-            },
-
-        },
-        {
-            title: gettext("Duplicate"),
-            icon: "fa fa-files-o",
-            classes: "btn tiny red",
-            permission: {
-              name: "create",
-              model: "Event"
-            },
-            action: function(){
-                var selected = _.find($scope.events, function(x){
-                    return x.is_selected === true;
-                });
-
-                if (selected === undefined ) {
-                    error_message(gettext("You should only select one item to copy."));
-                }
-                else {
-                    $location.path("/events/-" + selected.id + "/edit");
-                }
-            }
-        }
+         }
 
     ];
 
@@ -186,7 +157,7 @@ Events.controller("EventController", ["$scope", "gettext", "Restangular", "catch
             });
 
     };
-    /*
+
 
     API.all("events").getList()
         .then(function(data){
@@ -194,7 +165,7 @@ Events.controller("EventController", ["$scope", "gettext", "Restangular", "catch
         }, function(data){
             catch_error(data);
         });
-     */
+
 }]);
 
 
@@ -305,7 +276,7 @@ Events.controller("AddEventController", ["Restangular", "$scope", "$location", "
 
 Events.controller('EventMenuController', ["gettext", function(gettext){
     this.menu_items = [
-        {title: gettext("Events"), url: "events", permission: {action: "read", model: "Event"}},
-        {title: gettext("Event Types"), url: "event_types", permission: {action: "read", model: "EventType"}},
+        {title: gettext("Events"), url: "events", permission: {action: "read", model: "Didar::Event"}},
+        {title: gettext("Event Types"), url: "event_types", permission: {action: "read", model: "Didar::EventType"}},
     ];
 }]);

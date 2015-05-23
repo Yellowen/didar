@@ -1,37 +1,37 @@
-// EventTypes Module
-var EventTypes = angular.module("EventType", ["ListView", "Filter", "Anim", "Fields"]);
+// Events Module
+var Events = angular.module("Event", ["ListView", "Filter", "Anim", "Fields",]);
 
-// EventTypes configuration section ---------------------------
-EventTypes.config(["$stateProvider", function($stateProvider){
+// Events configuration section ---------------------------
+Events.config(["$stateProvider", function($stateProvider){
     // Add any route you need here
     $stateProvider.
-        state("event_types", {
-            url: "/event_types",
-            templateUrl: template_url("event_type/index"),
-            controller: "EventTypeController"
+        state("events", {
+            url: "/events",
+            templateUrl: template_url("event/index"),
+            controller: "EventController"
         }).
-        state("event_types/new",{
-            url: "/event_types/new",
-            templateUrl: template_url("event_type/new"),
-            controller: "AddEventTypeController"
+        state("events/new",{
+            url: "/events/new",
+            templateUrl: template_url("event/new"),
+            controller: "AddEventController"
         }).
-        state("event_types-edit",{
-            url: "/event_types/:id/edit",
-            templateUrl: template_url("event_type/new"),
-            controller: "AddEventTypeController"
+        state("events-edit",{
+            url: "/events/:id/edit",
+            templateUrl: template_url("event/new"),
+            controller: "AddEventController"
         });
 }]);
 
 
-// EventType index controller -------------------------------------------------------
+// Event index controller -------------------------------------------------------
 // This controller is responsible for list page (index)
-EventTypes.controller("EventTypeController", ["$scope", "gettext", "Restangular", "catch_error", "$location", "$routeParams", function($scope, gettext, API, catch_error, $location, $routeParams){
+Events.controller("EventController", ["$scope", "gettext", "Restangular", "catch_error", "$location", "$routeParams", function($scope, gettext, API, catch_error, $location, $routeParams){
 
-
+    
     $scope.filter_config = {
-        list: API.all("event_types")
+        list: API.all("events")
     };
-    $scope.event_types = [];
+    $scope.events = [];
     // Cache object for each field name possible values
     $scope.cache = {};
 
@@ -56,7 +56,7 @@ EventTypes.controller("EventTypeController", ["$scope", "gettext", "Restangular"
 
     // details_template is the address of template which should load for
     // each item details section
-    $scope.details_template = template("event_type/details");
+    $scope.details_template = template("event/details");
 
     // Buttons for top of the list-view
     $scope.buttons = [
@@ -66,11 +66,46 @@ EventTypes.controller("EventTypeController", ["$scope", "gettext", "Restangular"
             classes: "btn btn-success",
             permission: {
               name: "create",
-              model: "Didar::EventType"
+              model: "Event"
             },
-            route: "#/event_types/new"
+            route: "#/events/new"
 
-         }
+         },
+        {
+            title: gettext("Bulk Edit"),
+            icon: "fa fa-edit",
+            classes: "btn btn-warning",
+            permission: {
+              name: "update",
+              model: "Event"
+            },
+            action: function(){
+                $scope.$apply("bulk_edit = ! bulk_edit");
+            },
+
+        },
+        {
+            title: gettext("Duplicate"),
+            icon: "fa fa-files-o",
+            classes: "btn btn-danger",
+            permission: {
+              name: "create",
+              model: "Event"
+            },
+            action: function(){
+                var selected = _.find($scope.events, function(x){
+                    return x.is_selected === true;
+                });
+
+                if (selected === undefined ) {
+                    error_message(gettext("You should only select one item to copy."));
+                }
+                else {
+                    $location.path("/events/-" + selected.id + "/edit");
+                }
+            }
+        }
+
     ];
 
     /*
@@ -92,9 +127,9 @@ EventTypes.controller("EventTypeController", ["$scope", "gettext", "Restangular"
         $scope.sfiller = 0;
         $scope.success = 0;
         $scope.failed = 0;
-        $scope.total = _.where($scope.event_types, function(x){return x.is_selected === true;}).length;
+        $scope.total = _.where($scope.events, function(x){return x.is_selected === true;}).length;
 
-        _.each($scope.event_types, function(x){
+        _.each($scope.events, function(x){
             if( x.is_selected === true ){
                 x[field] = value;
                 requests_count++;
@@ -103,7 +138,7 @@ EventTypes.controller("EventTypeController", ["$scope", "gettext", "Restangular"
                 if (requests_count == $scope.total) { rwidth = 100; }
                 $scope.rfiller = rwidth + "%";
 
-                API.one("event_types", x.id).patch(x).then(function(data){
+                API.one("events", x.id).patch(x).then(function(data){
                     $scope.success++;
                     var swidth = parseInt(($scope.success * 100) / $scope.total);
                     if ($scope.sucess == $scope.total) { swidth = 100; }
@@ -128,7 +163,7 @@ EventTypes.controller("EventTypeController", ["$scope", "gettext", "Restangular"
         $scope.view_progressbar = false;
         $scope.bulk_edit = false;
     };
-
+    
     /*
      * On delete event handler - `items` is an array of objects to delete
      */
@@ -139,10 +174,10 @@ EventTypes.controller("EventTypeController", ["$scope", "gettext", "Restangular"
             query.push(item.id);
         });
 
-        API.all("event_types").customDELETE(query.join(","))
+        API.all("events").customDELETE(query.join(","))
             .then(function(data) {
 
-                $scope.event_types = _.filter($scope.event_types, function(x){
+                $scope.events = _.filter($scope.events, function(x){
                     return !(query.indexOf(x.id) != -1);
                 });
                 success_message(data.msg);
@@ -151,30 +186,34 @@ EventTypes.controller("EventTypeController", ["$scope", "gettext", "Restangular"
             });
 
     };
-
-
-
-    API.all("event_types").getList()
+    /*
+    
+    API.all("events").getList()
         .then(function(data){
-            $scope.event_types = data;
+            $scope.events = data;
         }, function(data){
             catch_error(data);
         });
-
+     */
 }]);
 
 
-EventTypes.controller("AddEventTypeController", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
+Events.controller("AddEventController", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
 
-
+    
 
     $scope.select2options = {};
     $scope.editing = false;
     $scope.obj_id = null;
     var is_copy = false;
 
-
-
+    
+    $scope.event_type_data = {
+        type: 'belongs_to',
+        to: 'event_types',
+        name: 'event_type'
+    };
+    
     if( "id" in $routeParams ){
         $scope.obj_id = $routeParams.id;
         $scope.editing = true;
@@ -183,12 +222,16 @@ EventTypes.controller("AddEventTypeController", ["Restangular", "$scope", "$loca
             $scope.obj_id = $scope.obj_id * -1;
         }
 
-        var obj = API.one("event_types", $scope.obj_id).get()
+        var obj = API.one("events", $scope.obj_id).get()
                 .then(function(data) {
-
+                
                     $scope.name = data.name;
                     $scope.description = data.description;
-                    $scope.color = data.color;
+                    $scope.start = to_datetime(data.start);
+                    $scope.end = to_datetime(data.end);
+                    $scope.event_type = data.event_type.id;
+                    $scope.url = data.url;
+                    $scope.all_day = to_boolean(data.all_day);
                 }, function(data){
                     catch_error(data);
                 });
@@ -207,29 +250,33 @@ EventTypes.controller("AddEventTypeController", ["Restangular", "$scope", "$loca
 
     $scope.cancel = function(){
         $(".form input").val("");
-        $location.path("/event_types");
+        $location.path("/events");
     };
 
     $scope.save = function(save_another){
         $("small.error").html("");
         $("small.error").removeClass("error");
 
-        var event_type = {event_type: {
+        var event = {event: {
             name: $scope.name,
             description: $scope.description,
-            color: $scope.color,
+            start: $scope.start,
+            end: $scope.end,
+            event_type_id: parseInt($scope.event_type),
+            url: $scope.url,
+            all_day: $scope.all_day,
             __res__: 0
         }};
         if (($scope.obj_id) && (is_copy === false)) {
 
-            API.one("event_types", $scope.obj_id).patch(event_type)
+            API.one("events", $scope.obj_id).patch(event)
                 .then(function(){
-                    success_message(gettext("EventType updated successfully."));
+                    success_message(gettext("Event updated successfully."));
                     if (save_another) {
                         $(".form input").val("");
                     }
                     else {
-                        $location.path("/event_types");
+                        $location.path("/events");
                     }
                 }, function(data){
                     catch_error(data);
@@ -237,13 +284,13 @@ EventTypes.controller("AddEventTypeController", ["Restangular", "$scope", "$loca
 
         }
         else {
-            API.all("event_types").customPOST(event_type, "").then(function(){
-                success_message(gettext("EventType created successfully."));
+            API.all("events").customPOST(event, "").then(function(){
+                success_message(gettext("Event created successfully."));
                 if (save_another) {
                     $(".form input").val("");
                 }
                 else {
-                    $location.path("/event_types");
+                    $location.path("/events");
                 }
             }, function(data){
                 catch_error(data);
@@ -252,3 +299,7 @@ EventTypes.controller("AddEventTypeController", ["Restangular", "$scope", "$loca
 
     };
 }]);
+
+
+
+

@@ -4,14 +4,14 @@ module Didar
 
     # GET /api/v1/events
     def index
-      @events = Event.all
+      @events = Didar::Event.all
       authorize @events
       respond_with(@events)
     end
 
     def create
-      authorize Event, :create?
-      @event = Event.new(resource_params)
+      authorize Didar::Event, :create?
+      @event = Didar::Event.new(resource_params)
 
       if @event.save
         respond_with(@event)
@@ -23,13 +23,13 @@ module Didar
     end
 
     def show
-      @event = Event.find(params[:id])
+      @event = Didar::Event.find(params[:id])
       authorize @event
       respond_with(@event)
     end
 
     def update
-      @event = Event.find(params[:id])
+      @event = Didar::Event.find(params[:id])
       authorize @event, :update?
 
 
@@ -44,7 +44,7 @@ module Didar
 
     def destroy
       ids = params[:id].split(",")
-      @events = Event.where(:id => ids)
+      @events = Didar::Event.where(:id => ids)
 
       authorize @events
       @events.destroy_all

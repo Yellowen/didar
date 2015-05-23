@@ -5,7 +5,6 @@ end
 
 require "faalis"
 
-
 module Didar
   class Engine < ::Rails::Engine
     isolate_namespace Didar
