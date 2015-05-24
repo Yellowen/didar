@@ -1,2 +1,2 @@
 //= require_tree ./modules/
-//= require fullcalendar
+//= require jfullcalendar
