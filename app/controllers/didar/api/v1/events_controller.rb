@@ -1,9 +1,15 @@
 module Didar
   class API::V1::EventsController < APIController
-    after_action :verify_authorized, :except => :index
+    after_action :verify_authorized, :except => [:index, :calendar]
 
     # GET /api/v1/events
     def index
+      @events = Didar::Event.all
+      authorize @events
+      respond_with(@events)
+    end
+
+    def calendar
       @events = Didar::Event.all
       authorize @events
       respond_with(@events)

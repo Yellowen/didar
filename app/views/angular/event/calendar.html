@@ -65,8 +65,6 @@
     </div><!-- /.col -->
   </div><!-- /.row -->
 </section><!-- /.content -->
- <!-- fullCalendar 2.2.5 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
 
     <!-- Page specific script -->
     <script type="text/javascript">
@@ -105,6 +103,7 @@
                 m = date.getMonth(),
                 y = date.getFullYear();
         $('#calendar').fullCalendar({
+          lang: 'fa',
           header: {
             left: 'prev,next today',
             center: 'title',
@@ -119,7 +118,7 @@
           //Random default events
           events: [
             {
-              title: 'All Day Event',
+              title: _('All Day Event'),
               start: new Date(y, m, 1),
               backgroundColor: "#f56954", //red
               borderColor: "#f56954" //red
