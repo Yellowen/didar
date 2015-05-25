@@ -9,6 +9,7 @@
         <div class="box-body">
           <!-- the events -->
           <div id='external-events'>
+            <div ng-repeat="type in types" class='external-event bg-{{type.color}}' >{{type.name}}</div>
             <div class='external-event bg-green'>Lunch</div>
           </div>
           <div class="checkbox">

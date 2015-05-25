@@ -18,7 +18,7 @@ Events.config(["$stateProvider", function($stateProvider){
         state("events-calendar",{
             url: "/events/calendar",
             templateUrl: template("event/calendar"),
-            controller: "EventController"
+            controller: "EventControllerCalendar"
         }).
         state("events-edit",{
             url: "/events/edit/:id",
@@ -166,6 +166,23 @@ Events.controller("EventController", ["$scope", "gettext", "Restangular", "catch
             catch_error(data);
         });
 
+}]);
+
+Events.controller("EventControllerCalendar", ["$scope", "gettext", "Restangular", "catch_error", "$location", "$routeParams", function($scope, gettext, API, catch_error, $location, $routeParams){
+
+    API.all("event_types").getList()
+        .then(function(data){
+            $scope.types = data;
+        }, function(data){
+            catch_error(data);
+        });
+
+    API.all("events").getList()
+        .then(function(data){
+            $scope.events = data;
+        }, function(data){
+            catch_error(data);
+        });
 }]);
 
 
