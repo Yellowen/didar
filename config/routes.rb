@@ -11,8 +11,11 @@ Didar::Engine.routes.draw do
   namespace :api, :defaults => {:format => :json} do
     namespace :v1 do
       resources :event_types
-      get '/events/calendar', to: 'events#calendar'
-      resources :events, as: :event
+      resources :events, as: :event do
+        collection do
+          get 'calendar', to: 'events#calendar'
+        end
+      end
     end
   end
 end

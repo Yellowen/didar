@@ -27,7 +27,7 @@ Events.config(["$stateProvider", function($stateProvider){
 // This controller is responsible for list page (index)
 Events.controller("EventController", ["$scope", "gettext", "Restangular", "catch_error", "$location", "$routeParams", function($scope, gettext, API, catch_error, $location, $routeParams){
 
-    
+
     $scope.filter_config = {
         list: API.all("events")
     };
@@ -163,7 +163,7 @@ Events.controller("EventController", ["$scope", "gettext", "Restangular", "catch
         $scope.view_progressbar = false;
         $scope.bulk_edit = false;
     };
-    
+
     /*
      * On delete event handler - `items` is an array of objects to delete
      */
@@ -187,7 +187,7 @@ Events.controller("EventController", ["$scope", "gettext", "Restangular", "catch
 
     };
     /*
-    
+
     API.all("events").getList()
         .then(function(data){
             $scope.events = data;
@@ -200,20 +200,22 @@ Events.controller("EventController", ["$scope", "gettext", "Restangular", "catch
 
 Events.controller("AddEventController", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
 
-    
+        console.log("----------------");
+        console.log($scope.end);
+        console.log("----------------");
 
     $scope.select2options = {};
     $scope.editing = false;
     $scope.obj_id = null;
     var is_copy = false;
 
-    
+
     $scope.event_type_data = {
         type: 'belongs_to',
         to: 'event_types',
         name: 'event_type'
     };
-    
+
     if( "id" in $routeParams ){
         $scope.obj_id = $routeParams.id;
         $scope.editing = true;
@@ -224,7 +226,7 @@ Events.controller("AddEventController", ["Restangular", "$scope", "$location", "
 
         var obj = API.one("events", $scope.obj_id).get()
                 .then(function(data) {
-                
+
                     $scope.name = data.name;
                     $scope.description = data.description;
                     $scope.start = to_datetime(data.start);
@@ -256,7 +258,6 @@ Events.controller("AddEventController", ["Restangular", "$scope", "$location", "
     $scope.save = function(save_another){
         $("small.error").html("");
         $("small.error").removeClass("error");
-
         var event = {event: {
             name: $scope.name,
             description: $scope.description,
@@ -299,7 +300,3 @@ Events.controller("AddEventController", ["Restangular", "$scope", "$location", "
 
     };
 }]);
-
-
-
-

@@ -4,7 +4,7 @@ if File.exists?([File.expand_path("../../../", __FILE__),
 end
 
 require "faalis"
-
+require "jbuilder"
 module Didar
   class Engine < ::Rails::Engine
     isolate_namespace Didar
@@ -21,5 +21,6 @@ module Didar
     include ::Faalis::Extension::Base
     #register_extension "didar", self
     #::Faalis::Engine.dashboard_js_manifest = "didar/application.js"
+    railties_order = [:main_app, Dashstrap::TemplateEngine, :all]
   end
 end

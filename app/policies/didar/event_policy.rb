@@ -1,4 +1,4 @@
 module Didar
-  class EventPolicy < Faalis::ApplicationPolicy
+  class EventPolicy < ::ApplicationPolicy
   end
 end
