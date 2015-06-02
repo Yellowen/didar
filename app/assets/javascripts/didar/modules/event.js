@@ -1,7 +1,7 @@
 // Events Module
 var Events = angular.module("Event", ["ListView", "Filter", "Anim", "Fields", "EventType"]);
 
-// Events configuration section ---------------------------
+// Events configuration section ---------------------------f
 Events.config(["$stateProvider", function($stateProvider){
     // Add any route you need here
     $stateProvider.
@@ -187,7 +187,6 @@ Events.controller("EventControllerCalendar", ["$scope", "gettext", "Restangular"
 
 
 Events.controller("AddEventController", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
-
 
 
     $scope.select2options = {};
